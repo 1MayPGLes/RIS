@@ -1,0 +1,53 @@
+{% macro render_filter() %}
+<div>
+    <form id="filter-form">
+        <div class="select-category-container">
+            <label for="categories">Фильтр по категориям</label>
+            <div>
+                <select id="categories" form="filter-form" name="category">
+                    <option value="all">Все</option>
+                    <option value="clothes">Одежда</option>
+                    <option value="food">Еда</option>
+                </select>
+            </div>
+        </div>
+        <input type="submit" value="Применить" class="apply-filter-button">
+    </form>
+</div>
+{% endmacro %}
+
+{% macro render_content(items) %}
+<div class="swiper-wrapper">
+    {% for item in items %}
+    <div class="okno swiper-slide">
+        <article class="card">
+            <div class="card__image">
+                <img src="{{ url_for('static', filename='images/product/{}'.format(item[3])) }}" alt="{{ item[3] }}">
+            </div>
+            <div class="card__content">
+                <h3 class="card__title">{{ item[1] }}</h3>
+                <p class="card__descr">{{ item[2] }}₽</p>
+                <form action="" method="POST">
+                    <input type="hidden" name="prod_id" value="{{ item[0] }}">
+                    <input type="submit" value="Купить">
+                </form>
+            </div>
+        </article>
+    </div>
+    {% endfor %}
+</div>
+{% endmacro %}
+
+{% macro render_basket(items) %}
+<div>
+    {% for _, item_data in items.items() %}
+    <div class="tovars">
+        <div class="tovar">
+            <div class="d-flex justify-content-left"><span>Нзавание: </span><p>{{ item_data["name"] }}</p></div>
+            <div class="d-flex justify-content-left"><span>Цена: </span><p>{{ item_data["price"] }}</p></div>
+            <div class="d-flex justify-content-left"><span>Штук: </span><p>{{ item_data["cnt"] }}</p></div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endmacro %}

@@ -1,5 +1,6 @@
 from DB.funcDB import select
 from flask import Flask, render_template, json, session
+from blueprintMarket.market import market
 from blueprintReport.report import report
 from blueprintQuery.query import query
 from blueprintAuth.auth import auth
@@ -8,12 +9,14 @@ from access import login_required
 app = Flask(__name__, template_folder='templates', static_folder="static")
 app.secret_key = 'lj8fw3nd88fasf854hskm454hnpdvu4e8'
 
+app.register_blueprint(market, url_prefix='/market')
 app.register_blueprint(report, url_prefix='/report')
 app.register_blueprint(query, url_prefix='/query')
 app.register_blueprint(auth, url_prefix='/auth')
 
-app.config['configDB'] = json.load(open('data/configDB.json'))
-app.config['access'] = json.load(open('data/access.json'))
+app.config['configDB'] = json.load(open('configs/configDB.json'))
+app.config['access'] = json.load(open('configs/access.json'))
+app.config['cache'] = json.load(open('configs/cache.json'))
 
 @app.route('/')
 @login_required

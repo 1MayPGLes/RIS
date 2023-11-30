@@ -1,7 +1,7 @@
 from flask import json
 from DB.funcDB import select, insert
 
-with open('data/configDB.json', 'r') as f:
+with open('configs/configDB.json', 'r') as f:
     configDB = json.load(f)
 
 product = f"""

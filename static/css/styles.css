@@ -668,3 +668,36 @@ a{
     font-weight: 600;
     margin: 0%;
 }
+
+.basket-item span{
+    font-size: 1.125rem;
+    font-weight: 650;
+    color: var(--color-blue);
+}
+
+.basket-item p{
+    font-size: 1.125rem;
+    font-weight: 550;
+}
+
+.basket_a a{
+    font-size: 1.125rem;
+    font-weight: 650;
+    color: var(--color-blue);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: 0.5s all ease;
+}
+
+.basket_a a:hover{
+    color: var(--color-green);
+    border-bottom: 2px solid var(--color-green);
+}
+
+.tovars{
+    border: 1px solid;
+    margin: 10px;
+    padding: 10px;
+    border-collapse: collapse;
+    border-radius: 10px;
+}
